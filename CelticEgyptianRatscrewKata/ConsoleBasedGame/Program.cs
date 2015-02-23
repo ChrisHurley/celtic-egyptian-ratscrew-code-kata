@@ -9,6 +9,7 @@ namespace ConsoleBasedGame
     {
         static void Main(string[] args)
         {
+            var logger = new ConsoleLogger();
             GameController game = new GameFactory().Create();
 
             var userInterface = new UserInterface();
@@ -27,8 +28,21 @@ namespace ConsoleBasedGame
             while (userInterface.TryReadUserInput(out userInput))
             {
                 var command = inputProcessor.ProcessKey(userInput);
-                command.Execute();
+                command.Execute(logger);
             } 
+        }
+    }
+
+    public interface ILogger
+    {
+        void Write(string message);
+    }
+
+    public class ConsoleLogger : ILogger
+    {
+        public void Write(string message)
+        {
+            Console.Write(message);
         }
     }
 }

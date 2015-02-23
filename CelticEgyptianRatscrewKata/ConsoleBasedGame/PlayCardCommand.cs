@@ -13,9 +13,10 @@ namespace ConsoleBasedGame
             m_Player = player;
         }
 
-        public void Execute()
+        public void Execute(ILogger log)
         {
-            m_Game.PlayCard(m_Player);
+            var card = m_Game.PlayCard(m_Player);
+            log.Write(string.Format("{0} has played the {1}", m_Player.Name, card.ToString()));
         }
     }
 }

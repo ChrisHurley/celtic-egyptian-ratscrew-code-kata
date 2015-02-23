@@ -8,7 +8,7 @@ namespace CelticEgyptianRatscrewKata.Game
     public interface IGameController
     {
         bool AddPlayer(IPlayer player);
-        void PlayCard(IPlayer player);
+        Card PlayCard(IPlayer player);
         void AttemptSnap(IPlayer player);
 
         /// <summary>
@@ -48,12 +48,14 @@ namespace CelticEgyptianRatscrewKata.Game
             return true;
         }
 
-        public void PlayCard(IPlayer player)
+        public Card PlayCard(IPlayer player)
         {
             if (m_GameState.HasCards(player.Name))
             {
-                m_GameState.PlayCard(player.Name);
+                return m_GameState.PlayCard(player.Name);
             }
+
+            return null;
         }
 
         public void AttemptSnap(IPlayer player)

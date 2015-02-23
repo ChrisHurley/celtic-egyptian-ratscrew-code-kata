@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return string.Format("Card {0} of {1}", m_Rank, m_Suit);
+            return string.Format("{0} of {1}", m_Rank, m_Suit);
         }
 
         #region EqualityMembers
