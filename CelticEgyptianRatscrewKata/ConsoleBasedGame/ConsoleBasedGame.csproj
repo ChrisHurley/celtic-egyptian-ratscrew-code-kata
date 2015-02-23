@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICommand.cs" />
     <Compile Include="InputProcessor.cs" />
     <Compile Include="PlayCardCommand.cs" />
     <Compile Include="PlayerInfo.cs" />

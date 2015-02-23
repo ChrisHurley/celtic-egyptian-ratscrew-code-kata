@@ -6,7 +6,7 @@ namespace ConsoleBasedGame
     internal class InputProcessor
     {
         private readonly IGameController m_Game;
-        private IDictionary<char, ICommand> m_KeyToCommand;
+        private readonly IDictionary<char, ICommand> m_KeyToCommand;
 
         public InputProcessor(IGameController game, IEnumerable<PlayerInfo> playerInfos)
         {
