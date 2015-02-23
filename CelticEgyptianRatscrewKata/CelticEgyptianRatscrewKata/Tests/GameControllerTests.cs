@@ -47,6 +47,37 @@ namespace CelticEgyptianRatscrewKata.Tests
             Assert.That(winner.Name, Is.EqualTo(playerC.Name));
         }
 
+        //Turn into test fixture
+        [Test]
+        public void GetsNextPlayer()
+        {
+            var gameController = CreateGameController();
+            var playerA = new Player("Jane");
+            var playerB = new Player("Joe");
+            var playerC = new Player("Jeff");
+
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.AddPlayer(playerC);
+
+            Assert.AreEqual(gameController.NextPlayer(playerA), playerB);
+        }
+
+        [Test]
+        public void GetsNextPlayerAtStartOfList()
+        {
+            var gameController = CreateGameController();
+            var playerA = new Player("Jane");
+            var playerB = new Player("Joe");
+            var playerC = new Player("Jeff");
+
+            gameController.AddPlayer(playerA);
+            gameController.AddPlayer(playerB);
+            gameController.AddPlayer(playerC);
+
+            Assert.AreEqual(gameController.NextPlayer(playerC), playerA);
+        }
+
         private static GameController CreateGameController()
         {
             var gameState = new GameState();

@@ -17,6 +17,7 @@ namespace CelticEgyptianRatscrewKata.Game
         void StartGame(Cards deck);
 
         bool TryGetWinner(out IPlayer winner);
+        IPlayer NextPlayer(IPlayer player);
     }
 
     /// <summary>
@@ -56,6 +57,15 @@ namespace CelticEgyptianRatscrewKata.Game
             }
 
             return null;
+        }
+
+        public IPlayer NextPlayer(IPlayer player)
+        {
+            var currentPlayer = m_Players.IndexOf(player);
+
+            var nextPlayerId = (currentPlayer + 1)%m_Players.Count();
+
+            return m_Players[nextPlayerId];
         }
 
         public void AttemptSnap(IPlayer player)

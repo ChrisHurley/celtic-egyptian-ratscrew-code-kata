@@ -1,3 +1,4 @@
+using System;
 using CelticEgyptianRatscrewKata.Game;
 
 namespace ConsoleBasedGame
@@ -21,6 +22,10 @@ namespace ConsoleBasedGame
             {
                 log.Write(string.Format("{0} has played the {1}", m_Player.Name, card));
             }
+
+            var nextPlayer = m_Game.NextPlayer(m_Player);
+
+            log.Write(String.Format("Next player is {0}", nextPlayer.Name));
         }
     }
 }
