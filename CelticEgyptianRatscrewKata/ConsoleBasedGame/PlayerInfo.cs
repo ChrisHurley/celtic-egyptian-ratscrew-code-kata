@@ -1,15 +1,17 @@
+using CelticEgyptianRatscrewKata.Game;
+
 namespace ConsoleBasedGame
 {
     internal class PlayerInfo
     {
-        public string PlayerName { get; private set; }
+        public IPlayer Player { get; private set; }
         public char PlayCardKey { get; private set; }
         public char SnapKey { get; private set; }
 
         public PlayerInfo(string playerName, char playCardKey, char snapKey)
         {
             SnapKey = snapKey;
-            PlayerName = playerName;
+            Player = new Player(playerName);
             PlayCardKey = playCardKey;
         }
     }
