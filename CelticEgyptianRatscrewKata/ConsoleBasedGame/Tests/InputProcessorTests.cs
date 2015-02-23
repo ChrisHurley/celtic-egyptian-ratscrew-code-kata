@@ -11,7 +11,6 @@ namespace ConsoleBasedGame.Tests
         public void CardIsPlayedOnCorrectKey()
         {
             var gameController = Substitute.For<IGameController>();
-            gameController.PlayCard(Arg.Any<Player>()).Returns(new Card(Suit.Clubs, Rank.Eight));
             var playerInfo = new PlayerInfo("Fred", 'a', 'b');
             var inputProcessor = new InputProcessor(gameController, new [] {playerInfo});
             var logger = Substitute.For<ILogger>();
@@ -29,7 +28,6 @@ namespace ConsoleBasedGame.Tests
             var logger = Substitute.For<ILogger>();
             inputProcessor.ProcessKey('a').Execute(logger);
             logger.Received().Write("Fred has played the Eight of Clubs");
-            
         }
     }
 }
