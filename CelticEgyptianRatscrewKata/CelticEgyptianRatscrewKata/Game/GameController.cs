@@ -5,10 +5,24 @@ using CelticEgyptianRatscrewKata.SnapRules;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
+    public interface IGameController
+    {
+        bool AddPlayer(IPlayer player);
+        void PlayCard(IPlayer player);
+        void AttemptSnap(IPlayer player);
+
+        /// <summary>
+        /// Starts a game with the currently added players
+        /// </summary>
+        void StartGame(Cards deck);
+
+        bool TryGetWinner(out IPlayer winner);
+    }
+
     /// <summary>
     /// Controls a game of Celtic Egyptian Ratscrew.
     /// </summary>
-    public class GameController
+    public class GameController : IGameController
     {
         private readonly ISnapValidator m_SnapValidator;
         private readonly IDealer m_Dealer;
