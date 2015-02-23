@@ -6,17 +6,29 @@ namespace ConsoleBasedGame
     internal class InputProcessor
     {
         private readonly IGameController m_Game;
-        private readonly IEnumerable<PlayerInfo> m_PlayerInfos;
+        private IDictionary<char, ICommand> m_KeyToCommand;
 
         public InputProcessor(IGameController game, IEnumerable<PlayerInfo> playerInfos)
         {
             m_Game = game;
-            m_PlayerInfos = playerInfos;
+            m_KeyToCommand = GenerateKeysToCommandsMap(playerInfos);
+        }
+
+        private IDictionary<char, ICommand> GenerateKeysToCommandsMap(IEnumerable<PlayerInfo> playerInfos)
+        {
+            var map = new Dictionary<char, ICommand>();
+
+            foreach (var playerInfo in playerInfos)
+            {
+                map.Add(playerInfo.PlayCardKey, new PlayCardCommand(m_Game, playerInfo.Player));
+            }
+
+            return map;
         }
 
         public ICommand ProcessKey(char userInput)
         {
-            return null;
+            return m_KeyToCommand[userInput];
         }
     }
 }
